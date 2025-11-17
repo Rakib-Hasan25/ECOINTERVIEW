@@ -1,0 +1,18 @@
+# Job Retrieval Service Dependencies
+
+# Core
+requests>=2.31.0
+python-dotenv>=1.0.0
+
+# Database
+supabase>=2.0.0
+
+# Scheduling (for periodic job fetching)
+APScheduler>=3.10.0
+
+# Optional: For better date parsing
+python-dateutil>=2.8.2
+
+# Optional: For NLP-based skill extraction (more advanced)
+# spacy>=3.7.0
+# scikit-learn>=1.3.0

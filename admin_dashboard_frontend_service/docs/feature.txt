@@ -1,0 +1,9 @@
+Analytics for SDG 8 Impact
+* Dashboard for admins or organizers showing:
+   * Number of users analyzed,
+   * Jobs suggested,
+   * Skills most in demand,
+   * Common gaps.
+
+Admin Panel
+* Manage jobs, learning resources, and flagged data from within the app.

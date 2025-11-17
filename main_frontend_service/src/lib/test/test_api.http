@@ -1,0 +1,633 @@
+### Real-Time Job API - Test File
+### Use with VS Code REST Client extension or JetBrains HTTP Client
+
+### Variables
+# @baseUrl = http://localhost:5001
+@baseUrl =  https://unstandard-uncarved-sharika.ngrok-free.dev
+@apiPath = /api/realtime-jobs
+
+###############################################################################
+### 1. Health Check
+###############################################################################
+
+### 1.1 Check API Health
+GET {{baseUrl}}{{apiPath}}/health
+
+###############################################################################
+### 2. Platform Links
+###############################################################################
+
+### 2.1 Get Platform Links - Bangladesh
+GET {{baseUrl}}{{apiPath}}/platforms?query=software+developer&location=Bangladesh
+
+### 2.2 Get Platform Links - Remote
+GET {{baseUrl}}{{apiPath}}/platforms?query=python+developer&location=Remote
+
+### 2.3 Get Platform Links - United States
+GET {{baseUrl}}{{apiPath}}/platforms?query=frontend+developer&location=United+States
+
+###############################################################################
+### 3. Quick Job Search (GET) - No Filters
+###############################################################################
+
+### 3.1 Basic Quick Search
+GET {{baseUrl}}{{apiPath}}/quick-search?q=python+developer&location=Remote
+
+### 3.2 Quick Search with Limit
+GET {{baseUrl}}{{apiPath}}/quick-search?q=software+engineer&location=United+States&limit=4
+
+### 3.3 Quick Search - Bangladesh
+GET {{baseUrl}}{{apiPath}}/quick-search?q=developer&location=Bangladesh&limit=5
+
+###############################################################################
+### 4. Quick Job Search (GET) - With Filters
+###############################################################################
+
+### 4.1 Filter by Remote Only
+GET {{baseUrl}}{{apiPath}}/quick-search?q=developer&remote=true&limit=5
+
+### 4.2 Filter by Experience Level - Senior
+GET {{baseUrl}}{{apiPath}}/quick-search?q=engineer&experience_level=senior&limit=5
+
+### 4.3 Filter by Experience Level - Entry
+GET {{baseUrl}}{{apiPath}}/quick-search?q=developer&experience_level=entry&limit=5
+
+### 4.4 Filter by Job Type - Full-Time
+GET {{baseUrl}}{{apiPath}}/quick-search?q=developer&job_type=full-time&limit=5
+
+### 4.5 Filter by Job Type - Contract
+GET {{baseUrl}}{{apiPath}}/quick-search?q=developer&job_type=contract&limit=5
+
+### 4.6 Filter by Skills - Python
+GET {{baseUrl}}{{apiPath}}/quick-search?q=developer&skills=Python&limit=5
+
+### 4.7 Filter by Multiple Skills - Python, React, AWS
+GET {{baseUrl}}{{apiPath}}/quick-search?q=developer&skills=Python,React,AWS&limit=5
+
+### 4.8 Filter by Salary Range
+GET {{baseUrl}}{{apiPath}}/quick-search?q=developer&min_salary=80000&max_salary=150000&limit=5
+
+### 4.9 Filter by Minimum Salary Only
+GET {{baseUrl}}{{apiPath}}/quick-search?q=developer&min_salary=100000&limit=5
+
+### 4.10 Filter by Company Name
+GET {{baseUrl}}{{apiPath}}/quick-search?q=engineer&company=Google&limit=5
+
+### 4.11 Multiple Filters Combined - Remote Senior Full-Time
+GET {{baseUrl}}{{apiPath}}/quick-search?q=developer&remote=true&experience_level=senior&job_type=full-time&limit=5
+
+### 4.12 Multiple Filters - Skills + Salary + Remote
+GET {{baseUrl}}{{apiPath}}/quick-search?q=developer&skills=Python,Django&min_salary=80000&remote=true&limit=5
+
+###############################################################################
+### 5. Full Job Search (POST) - No Filters
+###############################################################################
+
+### 5.1 Basic Job Search
+POST {{baseUrl}}{{apiPath}}/search
+Content-Type: application/json
+
+{
+  "query": "software developer",
+  "location": "Bangladesh"
+}
+
+### 5.2 Job Search - Remote
+POST {{baseUrl}}{{apiPath}}/search
+Content-Type: application/json
+
+{
+  "query": "python developer",
+  "location": "Remote"
+}
+
+### 5.3 Job Search with Specific Sources
+POST {{baseUrl}}{{apiPath}}/search
+Content-Type: application/json
+
+{
+  "query": "frontend developer",
+  "location": "United States",
+  "sources": ["remotive", "themuse"]
+}
+
+### 5.4 Job Search - Disable Cache
+POST {{baseUrl}}{{apiPath}}/search
+Content-Type: application/json
+
+{
+  "query": "developer",
+  "location": "Remote",
+  "use_cache": false
+}
+
+###############################################################################
+### 6. Full Job Search (POST) - With Filters
+###############################################################################
+
+### 6.1 Filter by Job Type - Full-Time
+POST {{baseUrl}}{{apiPath}}/search
+Content-Type: application/json
+
+{
+  "query": "developer",
+  "location": "Remote",
+  "filters": {
+    "job_type": "full-time"
+  }
+}
+
+### 6.2 Filter by Experience Level - Senior
+POST {{baseUrl}}{{apiPath}}/search
+Content-Type: application/json
+
+{
+  "query": "software engineer",
+  "location": "United States",
+  "filters": {
+    "experience_level": "senior"
+  }
+}
+
+### 6.3 Filter by Remote Only
+POST {{baseUrl}}{{apiPath}}/search
+Content-Type: application/json
+
+{
+  "query": "developer",
+  "filters": {
+    "remote": true
+  }
+}
+
+### 6.4 Filter by Skills - Python and Django
+POST {{baseUrl}}{{apiPath}}/search
+Content-Type: application/json
+
+{
+  "query": "backend developer",
+  "location": "Remote",
+  "filters": {
+    "skills": ["Python", "Django"]
+  }
+}
+
+### 6.5 Filter by Skills - Frontend Technologies
+POST {{baseUrl}}{{apiPath}}/search
+Content-Type: application/json
+
+{
+  "query": "frontend developer",
+  "filters": {
+    "skills": ["React", "Vue", "Angular", "JavaScript"]
+  }
+}
+
+### 6.6 Filter by Salary Range
+POST {{baseUrl}}{{apiPath}}/search
+Content-Type: application/json
+
+{
+  "query": "developer",
+  "location": "United States",
+  "filters": {
+    "min_salary": 80000,
+    "max_salary": 150000
+  }
+}
+
+### 6.7 Filter by Company Name
+POST {{baseUrl}}{{apiPath}}/search
+Content-Type: application/json
+
+{
+  "query": "software engineer",
+  "filters": {
+    "company": "Google"
+  }
+}
+
+### 6.8 Filter by Location
+POST {{baseUrl}}{{apiPath}}/search
+Content-Type: application/json
+
+{
+  "query": "developer",
+  "filters": {
+    "location_filter": "San Francisco"
+  }
+}
+
+### 6.9 Multiple Filters - Remote Senior Full-Time
+POST {{baseUrl}}{{apiPath}}/search
+Content-Type: application/json
+
+{
+  "query": "developer",
+  "location": "Remote",
+  "filters": {
+    "job_type": "full-time",
+    "experience_level": "senior",
+    "remote": true
+  }
+}
+
+### 6.10 Multiple Filters - All Filter Types
+POST {{baseUrl}}{{apiPath}}/search
+Content-Type: application/json
+
+{
+  "query": "python developer",
+  "location": "United States",
+  "filters": {
+    "job_type": "full-time",
+    "experience_level": "senior",
+    "remote": true,
+    "min_salary": 100000,
+    "max_salary": 180000,
+    "skills": ["Python", "Django", "AWS", "Docker"]
+  }
+}
+
+### 6.11 Entry Level Jobs with Skills Filter
+POST {{baseUrl}}{{apiPath}}/search
+Content-Type: application/json
+
+{
+  "query": "junior developer",
+  "filters": {
+    "experience_level": "entry",
+    "skills": ["JavaScript", "HTML", "CSS"]
+  }
+}
+
+### 6.12 Contract Jobs with High Salary
+POST {{baseUrl}}{{apiPath}}/search
+Content-Type: application/json
+
+{
+  "query": "developer",
+  "filters": {
+    "job_type": "contract",
+    "min_salary": 120000
+  }
+}
+
+###############################################################################
+### 7. Match Jobs to User Skills
+###############################################################################
+
+### 7.1 Basic Skill Matching
+POST {{baseUrl}}{{apiPath}}/match
+Content-Type: application/json
+
+{
+  "query": "developer",
+  "location": "Remote",
+  "user_skills": ["Python", "Django", "React"]
+}
+
+### 7.2 Skill Matching with Minimum Match Percentage
+POST {{baseUrl}}{{apiPath}}/match
+Content-Type: application/json
+
+{
+  "query": "full stack developer",
+  "location": "United States",
+  "user_skills": ["JavaScript", "React", "Node.js", "PostgreSQL"],
+  "min_match_percentage": 50
+}
+
+### 7.3 Skill Matching - Frontend Developer
+POST {{baseUrl}}{{apiPath}}/match
+Content-Type: application/json
+
+{
+  "query": "frontend developer",
+  "user_skills": ["HTML", "CSS", "JavaScript", "React", "TypeScript"],
+  "min_match_percentage": 30
+}
+
+### 7.4 Skill Matching - Backend Developer
+POST {{baseUrl}}{{apiPath}}/match
+Content-Type: application/json
+
+{
+  "query": "backend developer",
+  "user_skills": ["Python", "Django", "PostgreSQL", "Redis", "AWS"],
+  "min_match_percentage": 40
+}
+
+### 7.5 Skill Matching with Specific Sources
+POST {{baseUrl}}{{apiPath}}/match
+Content-Type: application/json
+
+{
+  "query": "software engineer",
+  "location": "Remote",
+  "user_skills": ["Java", "Spring", "Microservices", "Kubernetes"],
+  "min_match_percentage": 30,
+  "sources": ["remotive", "themuse"]
+}
+
+###############################################################################
+### 8. Skill Gap Analysis
+###############################################################################
+
+### 8.1 Basic Skill Gap Analysis
+POST {{baseUrl}}{{apiPath}}/skill-gap-analysis
+Content-Type: application/json
+
+{
+  "query": "frontend developer",
+  "location": "United States",
+  "user_skills": ["HTML", "CSS", "JavaScript"]
+}
+
+### 8.2 Skill Gap - Backend Developer
+POST {{baseUrl}}{{apiPath}}/skill-gap-analysis
+Content-Type: application/json
+
+{
+  "query": "backend developer",
+  "user_skills": ["Python", "Flask"]
+}
+
+### 8.3 Skill Gap - Full Stack Developer
+POST {{baseUrl}}{{apiPath}}/skill-gap-analysis
+Content-Type: application/json
+
+{
+  "query": "full stack developer",
+  "location": "Remote",
+  "user_skills": ["JavaScript", "React", "Node.js"]
+}
+
+### 8.4 Skill Gap - Data Scientist
+POST {{baseUrl}}{{apiPath}}/skill-gap-analysis
+Content-Type: application/json
+
+{
+  "query": "data scientist",
+  "user_skills": ["Python", "Pandas", "NumPy"]
+}
+
+### 8.5 Skill Gap with Specific Sources
+POST {{baseUrl}}{{apiPath}}/skill-gap-analysis
+Content-Type: application/json
+
+{
+  "query": "DevOps engineer",
+  "location": "United States",
+  "user_skills": ["Docker", "Linux"],
+  "sources": ["remotive", "jsearch"]
+}
+
+###############################################################################
+### 9. Cache Management
+###############################################################################
+
+### 9.1 Clear Cache
+POST {{baseUrl}}{{apiPath}}/clear-cache
+
+###############################################################################
+### 10. Real-World Use Case Examples
+###############################################################################
+
+### 10.1 Use Case: Find Entry-Level Remote Jobs for New Graduates
+GET {{baseUrl}}{{apiPath}}/quick-search?q=junior+developer&experience_level=entry&remote=true&limit=10
+
+### 10.2 Use Case: Find High-Paying Senior Positions in Tech Hubs
+POST {{baseUrl}}{{apiPath}}/search
+Content-Type: application/json
+
+{
+  "query": "senior software engineer",
+  "location": "San Francisco",
+  "filters": {
+    "experience_level": "senior",
+    "min_salary": 150000,
+    "skills": ["Python", "Java", "Kubernetes"]
+  }
+}
+
+### 10.3 Use Case: Find Contract/Freelance Work
+GET {{baseUrl}}{{apiPath}}/quick-search?q=developer&job_type=contract&remote=true&limit=10
+
+### 10.4 Use Case: Find Jobs Matching Your Resume Skills
+POST {{baseUrl}}{{apiPath}}/match
+Content-Type: application/json
+
+{
+  "query": "software developer",
+  "location": "Bangladesh",
+  "user_skills": ["JavaScript", "React", "Node.js", "MongoDB", "Express", "Git"],
+  "min_match_percentage": 40
+}
+
+### 10.5 Use Case: Identify Skills to Learn for Career Growth
+POST {{baseUrl}}{{apiPath}}/skill-gap-analysis
+Content-Type: application/json
+
+{
+  "query": "senior frontend developer",
+  "location": "Remote",
+  "user_skills": ["HTML", "CSS", "JavaScript", "React"]
+}
+
+### 10.6 Use Case: Find Part-Time Internships for Students
+GET {{baseUrl}}{{apiPath}}/quick-search?q=intern&job_type=internship&limit=10
+
+### 10.7 Use Case: Find Remote Jobs at Specific Companies
+POST {{baseUrl}}{{apiPath}}/search
+Content-Type: application/json
+
+{
+  "query": "developer",
+  "filters": {
+    "remote": true,
+    "company": "Microsoft",
+    "job_type": "full-time"
+  }
+}
+
+### 10.8 Use Case: Find Mid-Level Backend Jobs with Good Salary
+POST {{baseUrl}}{{apiPath}}/search
+Content-Type: application/json
+
+{
+  "query": "backend developer",
+  "location": "United States",
+  "filters": {
+    "experience_level": "mid",
+    "min_salary": 90000,
+    "skills": ["Python", "Django", "PostgreSQL"],
+    "job_type": "full-time"
+  }
+}
+
+###############################################################################
+### 11. Analytics - Dashboard Data
+###############################################################################
+
+### 11.1 Get Comprehensive Analytics
+POST {{baseUrl}}{{apiPath}}/analytics
+Content-Type: application/json
+
+{
+  "query": "developer",
+  "location": "Bangladesh"
+}
+
+### 11.2 Get Analytics with Filters
+POST {{baseUrl}}{{apiPath}}/analytics
+Content-Type: application/json
+
+{
+  "query": "python developer",
+  "location": "Remote",
+  "filters": {
+    "job_type": "full-time",
+    "experience_level": "senior",
+    "remote": true
+  }
+}
+
+### 11.3 Get Analytics for Frontend Jobs
+POST {{baseUrl}}{{apiPath}}/analytics
+Content-Type: application/json
+
+{
+  "query": "frontend developer",
+  "filters": {
+    "skills": ["React", "Vue", "Angular"]
+  }
+}
+
+### 11.4 Get Analytics for Backend Jobs with Salary Filter
+POST {{baseUrl}}{{apiPath}}/analytics
+Content-Type: application/json
+
+{
+  "query": "backend developer",
+  "location": "United States",
+  "filters": {
+    "min_salary": 80000,
+    "skills": ["Python", "Django", "PostgreSQL"]
+  }
+}
+
+###############################################################################
+### 12. Skill Trends Analytics
+###############################################################################
+
+### 12.1 Get Skill Trends (No User Skills)
+POST {{baseUrl}}{{apiPath}}/analytics/skill-trends
+Content-Type: application/json
+
+{
+  "query": "software developer",
+  "location": "United States"
+}
+
+### 12.2 Get Skill Trends with User Skills Gap Analysis
+POST {{baseUrl}}{{apiPath}}/analytics/skill-trends
+Content-Type: application/json
+
+{
+  "query": "full stack developer",
+  "location": "Remote",
+  "user_skills": ["JavaScript", "React", "Node.js", "Python"]
+}
+
+### 12.3 Get Skill Trends for Frontend
+POST {{baseUrl}}{{apiPath}}/analytics/skill-trends
+Content-Type: application/json
+
+{
+  "query": "frontend developer",
+  "user_skills": ["HTML", "CSS", "JavaScript", "React"]
+}
+
+### 12.4 Get Skill Trends for Backend
+POST {{baseUrl}}{{apiPath}}/analytics/skill-trends
+Content-Type: application/json
+
+{
+  "query": "backend developer",
+  "location": "United States",
+  "user_skills": ["Python", "Django", "PostgreSQL", "Redis"]
+}
+
+### 12.5 Get Skill Trends for Data Science
+POST {{baseUrl}}{{apiPath}}/analytics/skill-trends
+Content-Type: application/json
+
+{
+  "query": "data scientist",
+  "user_skills": ["Python", "Pandas", "NumPy", "Scikit-learn"]
+}
+
+###############################################################################
+### 13. Location Insights Analytics
+###############################################################################
+
+### 13.1 Get Location Insights - General
+POST {{baseUrl}}{{apiPath}}/analytics/location-insights
+Content-Type: application/json
+
+{
+  "query": "software engineer"
+}
+
+### 13.2 Get Location Insights - Developer Jobs
+POST {{baseUrl}}{{apiPath}}/analytics/location-insights
+Content-Type: application/json
+
+{
+  "query": "developer",
+  "location": "United States"
+}
+
+### 13.3 Get Location Insights - Remote Jobs
+POST {{baseUrl}}{{apiPath}}/analytics/location-insights
+Content-Type: application/json
+
+{
+  "query": "remote developer"
+}
+
+### 13.4 Get Location Insights - Specific Tech Stack
+POST {{baseUrl}}{{apiPath}}/analytics/location-insights
+Content-Type: application/json
+
+{
+  "query": "python developer",
+  "location": "United States"
+}
+
+###############################################################################
+### Notes
+###############################################################################
+
+# How to use this file:
+# 1. Install "REST Client" extension in VS Code (or use JetBrains HTTP Client)
+# 2. Click "Send Request" above any ### line
+# 3. View response in the panel
+# 4. Modify query parameters or request bodies as needed
+
+# Variables used:
+# @baseUrl = http://localhost:5001
+# @apiPath = /api/realtime-jobs
+
+# Available Filters:
+# - job_type: full-time, part-time, contract, internship
+# - experience_level: entry, mid, senior
+# - remote: true, false
+# - min_salary: numeric value
+# - max_salary: numeric value
+# - skills: array of strings (matches if job has ANY)
+# - company: string (partial match)
+# - location_filter: string (partial match)
+
+# Server must be running: python main_backend_service/test_job_server.py

@@ -1,0 +1,129 @@
+Hackathon Project Brief – Part 2 (Onsite 24-Hour Challenge)
+
+
+SDG 8: AI-Powered Youth Employment & Career Roadmap Platform
+Context
+This document is to be shared ONLY at the start of the 24-hour onsite hackathon. It builds directly on top of the Part 1 base project. Teams are expected to extend their existing platform into an intelligent, impactful solution that uses AI or smart logic to help youth access decent work opportunities in alignment with SDG 8.
+Objective for Part 2
+Upgrade your Part 1 platform into a meaningful AI-assisted career companion that:
+* Understands a user’s skills and background,
+* Matches them with suitable opportunities,
+* Identifies gaps,
+* Recommends learning resources,
+* Generates a personalized, actionable career roadmap,
+* Optionally supports them via a conversational assistant.
+
+
+All features must be implemented in a realistic, technically sound manner using actual logic, AI APIs, or open-source tools.
+PART 2 – CORE REQUIREMENTS (ONSITE)
+1. Smart Skill Extraction from CV or Profile (AI/NLP or Heuristic)
+Implement at least one reliable method to analyze user input:
+* Allow the user to upload a CV file (text-based) or paste CV content, OR use their existing profile data.
+* Extract and display:
+   * Key skills
+   * Tools/technologies
+   * Relevant roles or domains (e.g., “Frontend Developer”, “Data Analyst”).
+Implementation options:
+* Use an NLP/AI API (e.g., LLMs) to detect skills and roles.
+* Use open-source or custom keyword-based extraction for skills from a defined dictionary.
+* Requirements:
+* Show extracted skills as editable tags on the user profile.
+* The process and result must be transparent and explainable, not random.
+2. Intelligent Job Matching with Match Percentage
+Enhance your Part 1 matching logic:
+* For each job, compute a match score based on:
+   * Overlap between user skills and required job skills.
+   * Alignment of experience level.
+   * Alignment of preferred track/interest.
+* Display:
+   * Match percentage (e.g., “72% match”).
+   * Key reasons (e.g., “Matches React, JS, HTML; missing Redux and TypeScript”).
+* Highlight where users should look/apply:
+   * Include real-world platforms such as LinkedIn, BDjobs, Glassdoor, etc. (links or guidance).
+3. Skill Gap Analysis & Learning Suggestions
+For jobs that are a partial match:
+* Identify which skills are missing or weak compared to the job requirements.
+* Show these clearly to the user as a “Skill Gap” list.
+* Recommend relevant learning resources from your database to close those gaps.
+* Example:
+   * “Missing: Redux, TypeScript → Recommended: Course A, YouTube Playlist B.”
+4. AI-Generated Career Roadmap (Mandatory)
+Use AI or algorithmic generation to create a personalized roadmap for each user.
+Inputs may include (configurable in your UI):
+* Current skills (from profile or CV analysis),
+* Target role (e.g., Frontend Dev, Data Analyst),
+* Timeframe (e.g., 3 or 6 months),
+* User’s available learning time (optional).
+
+
+Roadmap Output Requirements:
+* A clear, step-by-step plan grouped by phases or weeks/months.
+* Specific topics/technologies to learn.
+* Simple project ideas to build.
+* A suggested point when the user should start applying for internships/jobs.
+* Roadmap should be:
+   * Visible inside the app,
+   * Saved for the logged-in user,
+   * Downloadable (PDF or copyable text) is strongly encouraged.
+5. CareerBot / Mentor Assistant (Strongly Recommended)
+Implement a simple “Ask CareerBot” feature to help users with career-related queries, such as:
+* “Which roles fit my skills?”
+* “What should I learn next to become a backend developer?”
+* “How can I improve my chances of getting an internship?”
+Implementation options:
+* LLM-based chatbot connected to your platform context.
+* Or a structured Q&A system powered by your own rules and datasets.
+Requirements:
+* Responses must be relevant and aligned with youth employment and SDG 8 goals.
+* Clearly indicate when the bot is suggesting, not guaranteeing outcomes.
+6. CV / Profile Assistant (Light but Practical)
+Implement at least ONE of the following:
+* Auto-generate a clean CV layout using user profile data (export as PDF or printable view).
+* Use AI or templates to suggest:
+   * Professional summary,
+   * Strong bullet points for projects/experience.
+* Provide recommendations for improving LinkedIn or online portfolio.
+* Note: Advanced AI headshot generation is optional and not required.
+BONUS FEATURES (OPTIONAL, FOR TIE-BREAKERS)
+If and only if your core features are working, you may add:
+
+
+1. Local Context & Real Impact
+* Integrate real or sample data from local job boards, government portals, or training programs.
+* Highlight opportunities relevant to your country/region and disadvantaged groups.
+
+////////////////////////////////////
+2. Analytics for SDG 8 Impact
+* Dashboard for admins or organizers showing:
+   * Number of users analyzed,
+   * Jobs suggested,
+   * Skills most in demand,
+   * Common gaps.
+3. Admin Panel
+* Manage jobs, learning resources, and flagged data from within the app.
+////////////////////////////////////
+
+4. Multi-language Support
+* Support both English and at least one local language to increase accessibility.
+JUDGING GUIDELINES (SUGGESTED – TOTAL 50)
+
+
+1. Relevance to SDG 8 (10)
+* Does the solution meaningfully support decent work, skill development, or employability for youth?
+2. Functionality & Reliability (10)
+* Are all core flows working smoothly from login to recommendations and roadmap?
+3. AI / Logic Quality (10)
+* Is AI or smart logic used in a clear, explainable, and practical way?
+* Are outputs helpful and not random?
+4. UX & Usability (8)
+* Is the interface intuitive, responsive, and accessible for real students/job seekers?
+5. Technical Implementation (7)
+* Clean architecture, appropriate use of tools, security and best practices where possible.
+
+
+6. Innovation & Practical Impact (5)
+* Creative touches, localization, or extra features that make the solution more impactful.
+Notes for Teams
+* Focus first on getting a reliable, end-to-end experience working.
+* Use AI thoughtfully: quality is more important than buzzwords.
+* All external APIs or services used must be clearly documented in your README.
